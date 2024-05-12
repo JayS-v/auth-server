@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --env-file=.env config.js index.js"
+    "start": "nodemon config.js index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.1",
     "express-fileupload": "^1.5.0",
     "express-validator": "^7.0.1",

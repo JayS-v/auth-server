@@ -5,7 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const config = require('./config');
 const authRouter = require('./auth/authRouter.js')
-
+const dotenv = require('dotenv').config()
 
 async function startServer() {
     try {
@@ -16,7 +16,9 @@ async function startServer() {
         // Middleware 
         app.use(express.json());
         app.use(fileUpload({}))
-        app.use(cors({ origin: config.CORS_ORIGIN }));
+        // app.use(cors({ origin: config.CORS_ORIGIN }));
+        app.use(cors({ origin: ["http://localhost:3000", `${config.CORS_ORIGIN}`] }));
+
         app.use(express.static('static'))
         app.use(cookieParser());
 
