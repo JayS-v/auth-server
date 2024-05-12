@@ -16,8 +16,8 @@ async function startServer() {
         // Middleware 
         app.use(express.json());
         app.use(fileUpload({}))
-        // app.use(cors({ origin: config.CORS_ORIGIN }));
-        app.use(cors({ origin: ["http://localhost:3000", `${config.CORS_ORIGIN}`] }));
+        app.use(cors({ origin: config.CORS_ORIGIN }));
+        // app.use(cors({ origin: ["http://localhost:3000", `${config.CORS_ORIGIN}`] }));
 
         app.use(express.static('static'))
         app.use(cookieParser());
