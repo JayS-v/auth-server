@@ -9,6 +9,7 @@ import authRouter from './auth/authRouter';
 import dotenv from "dotenv";
 dotenv.config();
 
+//test
 async function startServer(): Promise<void> {
     try {
         if (!config.DB_URL) {
@@ -29,7 +30,7 @@ async function startServer(): Promise<void> {
         //Routes
         app.use('/auth', authRouter)
         app.get('/', (req: Request, res: Response) => {
-            res.send('server is running2');
+            res.send('server is running');
         });
         app.use((req: Request, res: Response) => {
             res.status(404).send('Not Found');
