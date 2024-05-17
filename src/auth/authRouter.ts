@@ -18,7 +18,7 @@ authRouter.post('/registration', registrationValidation, authController.registra
 authRouter.post('/login', authController.login)
 
 // Get Users Route
-authRouter.get('/users', roleMiddleware(['USER', 'ADMIN']), authController.getUsers)
+authRouter.get('/users', roleMiddleware(['ADMIN']), authController.getUsers)
 
 // Verify Route
 authRouter.get('/verify', authMiddleware, authController.verify)
