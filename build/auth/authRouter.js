@@ -18,7 +18,7 @@ authRouter.post('/registration', registrationValidation, authController_1.defaul
 // Login Route
 authRouter.post('/login', authController_1.default.login);
 // Get Users Route
-authRouter.get('/users', (0, roleMiddleware_1.default)(['USER', 'ADMIN']), authController_1.default.getUsers);
+authRouter.get('/users', (0, roleMiddleware_1.default)(['ADMIN']), authController_1.default.getUsers);
 // Verify Route
 authRouter.get('/verify', authMiddleware_1.default, authController_1.default.verify);
 exports.default = authRouter;

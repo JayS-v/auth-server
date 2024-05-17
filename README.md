@@ -33,6 +33,14 @@ You can also use my client-side application available at [auth-client-app.jaysey
 3. **Set Up Environment Variables**: Create a `.env` file based on the provided `.env.example` and configure environment variables such as database connection settings and secret keys
 4. **Run the Development Server**: Execute `npm run dev` to launch the Express.js server using nodemon. The server will automatically restart when changes are detected in the source files
 
+## Build
+
+To compile the TypeScript code into JavaScript, run the following command:
+
+```bash
+npm run build
+```
+
 ## Contributing
 
 Contributions are welcome! If you encounter any issues, have suggestions for improvements, or would like to contribute new features, feel free to open an issue or submit a pull request
