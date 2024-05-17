@@ -1,4 +1,5 @@
 # Backend authentication service/API
+![Repo Size](https://img.shields.io/github/repo-size/JayS-v/auth-server)
 
 ## Description
 Secure backend service built with Express.js, TypeScript and cloud-based MongoDB, focusing primarily on authentication functionalities.
