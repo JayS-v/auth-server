@@ -1,8 +1,14 @@
-const jwt = require('jsonwebtoken')
-const { secret } = require('../auth/authConfig.js')
+import jwt from 'jsonwebtoken';
+import { Request as ExpressRequest, Response, NextFunction } from 'express';
+import { secret } from '../auth/authConfig';
+import { IUser } from '../auth/models/User'
 
-//gives acces to some functions for allowed users only
-module.exports = function (req, res, next) {
+interface CustomRequest extends ExpressRequest {
+    user?: IUser;
+}
+
+//gives acces for allowed users only
+const authMiddleware =  (req: CustomRequest, res: Response, next: NextFunction): void | Response => {
     if (req.method === 'OPTIONS') {
         next()
     }
@@ -26,7 +32,7 @@ module.exports = function (req, res, next) {
             return res.status(403).json({ message: 'no acces for this user' }) 
         }
 
-        const decodedToken = jwt.verify(token, secret)
+        const decodedToken = jwt.verify(token, secret) as IUser;
         req.user = decodedToken
 
         next() 
@@ -35,3 +41,5 @@ module.exports = function (req, res, next) {
         return res.status(403).json({ message: 'no acces for this user' })
     }
 }
+
+export default authMiddleware;

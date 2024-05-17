@@ -1,10 +1,14 @@
-const { secret } = require("../auth/authConfig");
-const jwt = require('jsonwebtoken');
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import { secret } from '../auth/authConfig';
+import { IUser } from '../auth/models/User'
 
-module.exports = function (roles) {
-    return function (req, res, next) {
+type Role = 'USER' | 'MODERATOR' | 'ADMIN';
+
+export default function checkRole(roles: Role[]) {
+    return function (req: Request, res: Response, next: NextFunction): void | Response  {
         if (req.method === 'OPTIONS') {
-            next()
+            return next()
         }
     
         try {    
@@ -26,11 +30,11 @@ module.exports = function (roles) {
                 return res.status(403).json({ message: 'no acces for this user' }) 
             }
             
-            const { roles: userRoles } = jwt.verify(token, secret)
+            const { roles: userRoles } = jwt.verify(token, secret) as IUser
             let hasRole = false
 
             userRoles.forEach(role => {
-                if (roles.includes(role)) {
+                if (roles.includes(role as Role)) {
                     hasRole = true
                 }
             })
@@ -39,7 +43,7 @@ module.exports = function (roles) {
                 return res.status(403).json({message: "No acces for this user"})
             }
     
-            next() 
+            return next() 
         } catch (e) {
             console.log(e)
             return res.status(403).json({ message: 'no acces for this user' })
