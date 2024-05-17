@@ -24,7 +24,7 @@ You can interact with the deployed API endpoints to test the functionality
 - **Get Users**: `GET /auth/users` - Retrieve a list of all users (requires authentication and appropriate role). Please enter fake data when testing this endpoint.
 - **Verify Token**: `GET /auth/verify` - Verify the authenticity of a JWT token and retrieve user information.
 
-You can also use my client-side application available at [auth-client-app.jayseyidov.com](auth-client-app.jayseyidov.com) to test these routes interactively.
+You can also use my client-side application available at [https://auth-client-app.jayseyidov.com](https://auth-client-app.jayseyidov.com) to test these routes interactively.
 
 
 ## Set up locally
