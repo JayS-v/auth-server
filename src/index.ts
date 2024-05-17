@@ -1,33 +1,38 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const fileUpload = require('express-fileupload')
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const config = require('./config');
-const authRouter = require('./auth/authRouter.js')
-const dotenv = require('dotenv').config()
+// const express = require('express')
+import express, { Express, Request, Response } from "express";
+import mongoose from 'mongoose';
+import fileUpload from 'express-fileupload';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import config from './config';
+import authRouter from './auth/authRouter';
+import dotenv from "dotenv";
+dotenv.config();
 
-async function startServer() {
+//test
+async function startServer(): Promise<void> {
     try {
+        if (!config.DB_URL) {
+            throw new Error("DB_URL is not defined");
+        }
+
         await mongoose.connect(config.DB_URL);
 
-        const app = express();
+        const app: Express = express();
 
         // Middleware 
         app.use(express.json());
         app.use(fileUpload({}))
         app.use(cors({ origin: config.CORS_ORIGIN }));
-        // app.use(cors({ origin: ["http://localhost:3000", `${config.CORS_ORIGIN}`] }));
-
         app.use(express.static('static'))
         app.use(cookieParser());
 
         //Routes
         app.use('/auth', authRouter)
-        app.get('/', (req, res) => {
+        app.get('/', (req: Request, res: Response) => {
             res.send('server is running');
         });
-        app.use((req, res) => {
+        app.use((req: Request, res: Response) => {
             res.status(404).send('Not Found');
         });
 
