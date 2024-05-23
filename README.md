@@ -4,7 +4,7 @@
 ## Description
 Secure backend service built with Express.js, TypeScript and cloud-based MongoDB, focusing primarily on authentication functionalities.
 
-## Futures
+## Features
 
 * **User Authentication**: Register new users, authenticate existing users
 * **Role-based Access Control**: Implement role-based access control to restrict access to certain routes or resources based on user roles
